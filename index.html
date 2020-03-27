@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>cssmini</title>
+</head>
+<style>
+    @font-face {
+        font-family: 'BlockFont';
+        src: url('font/BlockFont.ttf');
+    }
+
+    @font-face {
+        font-family: 'Aldo_Open';
+        src: url('font/Aldo_Open.otf');
+    }
+
+    @font-face {
+        font-family: 'BAD GRUNGE';
+        src: url('font/BAD GRUNGE.ttf');
+    }
+
+    @font-face {
+        font-family: 'Hyeenan haukotus';
+        src: url('font/Hyeenan haukotus.ttf');
+    }
+
+    @font-face {
+        font-family: 'kristinprint';
+        src: url('font/kristinprint.ttf');
+    }
+
+    @font-face {
+        font-family: 'MiFu';
+        src: url('font/MiFu.otf');
+    }
+
+    @font-face {
+        font-family: 'RuachStd';
+        src: url('font/RuachStd.otf');
+    }
+
+
+    @font-face {
+        font-family: 'zincboomerang';
+        src: url('font/zincboomerang.ttf');
+    }
+
+
+    @font-face {
+        font-family: 'Video Terminal Screen';
+        src: url('font/Video Terminal Screen.TTF');
+    }
+
+    body {
+        width: 375px;
+        margin: 0 auto;
+    }
+
+    article {
+        margin: 200px auto 0 auto;
+        text-align: center;
+    }
+
+    #title {
+        font-size: 84px;
+        text-align: center;
+        margin: 10px 0px;
+    }
+
+    nav {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    a {
+        margin: 0 10px;
+        color: black;
+    }
+
+    a:hover {
+        color: #26639c;
+    }
+
+    #describe {
+        margin: 10px 0px 30px 0px;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    footer {
+        font-size: 12px;
+        margin: 200px auto 0 auto;
+        text-align: center;
+    }
+</style>
+<link rel="stylesheet" href="css/animate.css">
+
+<body>
+    <article>
+        <div style="height: 200px;">
+            <p id="title">cssmini</p>
+            <p id="describe"></p>
+        </div>
+        <nav id="nav">
+            <a href="https://www.cssmini.com/cssmini_index">BLOG</a>
+            <a href="mailto:cssmini@qq.com">CONTACT ME</a>
+            <a href="https://github.com/cssmini">GITHUB</a>
+        </nav>
+
+    </article>
+    <footer id="footer">
+		<!--
+			<p>
+				Copyright &COPY; 2019 乘风hexiii
+			</p>
+			<p>
+				<a target="_blank" href="http://beian.miit.gov.cn" rel="nofollow">湘ICP备19008172号-1</a>
+			</p>
+		-->
+    </footer>
+    <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="js/ribbon.js"></script>
+    <script type="text/javascript">
+        let animated = "animated slower"
+        let fadeInDown = " fadeInDown";
+        let fadeOut = " fadeOut";
+        let tempAnimated = animated + fadeInDown;
+        document.getElementById("nav").className = tempAnimated;
+        document.getElementById("footer").className = tempAnimated;
+        setAnimated(tempAnimated);
+        describe();
+        setFont();
+        setInterval(function () {
+            let classStr = document.getElementById("describe").className;
+            let tempAnimated = '';
+            if (classStr == animated + fadeInDown) {
+                tempAnimated = animated + fadeOut;
+                setAnimated(tempAnimated);
+            } else {
+                tempAnimated = animated + fadeInDown;
+                setAnimated(tempAnimated);
+                describe();
+                setFont();
+            }
+        }, 3000);
+        function setAnimated(tempAnimated){
+            document.getElementById("title").className = tempAnimated;
+            document.getElementById("describe").className = tempAnimated;
+        }
+        function describe() {
+            let describeArray = [
+                'Just do it!',
+                'Hello， :)',
+                'Welcome to my site',
+            ];
+            let describeMAX = describeArray.length - 1;
+            let describeIndex = parseInt(Math.random() * (describeMAX + 1), 10);
+            document.getElementById("describe").innerHTML = describeArray[describeIndex];
+        }
+        function setFont() {
+            let fontArray = [
+                "Aldo_Open",
+                "BAD GRUNGE",
+                "BlockFont",
+                "Hyeenan haukotus",
+                "kristinprint",
+                "MiFu",
+                "RuachStd",
+                "Video Terminal Screen",
+                "zincboomerang",
+            ];
+            let fontArrayMAX = fontArray.length - 1;
+            let title = document.getElementById('title');
+            let fontIndex = parseInt(Math.random() * (fontArrayMAX + 1), 10);
+            title.setAttribute('style', "font-family: '" + fontArray[fontIndex] + "'");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Calculator</title>
+    <!-- 引入 layui.css -->
+    <link href="//unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.7.6/dist/layui.js"></script>
+    <!-- 引入 jquery.js -->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style>
+        .main-body{
+            width: 1200px;
+            height: 800px;
+            padding-top: 150px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-body">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">Risk Calculator</li>
+                <li>Trade Log Record</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <blockquote class="layui-elem-quote">Risk Calculator</blockquote>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">Enter Point</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="enterPoint" required lay-verify="required" placeholder="input enter point" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">Where are you enter point.</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">SL Point</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="stopLose" required lay-verify="required" placeholder="input stop lose point" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">Where will you stop lose.</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">TP Point</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="takePrice" required lay-verify="required" placeholder="input take price point" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">Where will you take price.</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">Risk</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="risk" required lay-verify="required" placeholder="input risk" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">The money you acceptable to lose.</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">Leverage</label>
+                        <div class="layui-input-inline">
+                            <input type="number" disabled name="leverage" placeholder="0.0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">The leverage you should use. (EnterPoint * 0.01 / SL_Offset * 100).toFixed(2)</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">Direction</label>
+                        <div class="layui-input-inline">
+                            <input type="text" disabled name="direction" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">Your direction.</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">Expect</label>
+                        <div class="layui-input-inline">
+                            <input type="text" disabled name="expect" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">If you won this trade you will got. (TP_Gffset / (EnterPoint * 0.01) * Risk).toFixed(2)</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button id="calculateBtn" class="layui-btn" lay-submit lay-filter="formDemo">calculate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">Nothing now...</div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script>
+        $(function () {
+            //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+            layui.use('element', function(){
+                var element = layui.element;
+
+                //…
+            });
+
+            $("#calculateBtn").click(function () {
+                const enterPoint = $("input[name='enterPoint']").val()
+                const stopLose = $("input[name='stopLose']").val()
+                const takePrice = $("input[name='takePrice']").val()
+                const risk = $("input[name='risk']").val()
+                const direction = Number(enterPoint) > Number(stopLose) ? true : false
+                let sl_offset = 0
+                let tp_offset = 0
+
+                if (direction){
+                    $("input[name='direction']").val('Long')
+                    sl_offset = enterPoint - stopLose
+                    tp_offset = takePrice - enterPoint
+                }else{
+                    $("input[name='direction']").val('Short')
+                    sl_offset = stopLose - enterPoint
+                    tp_offset = enterPoint - takePrice
+                }
+                const leverage = (enterPoint * 0.01 / sl_offset * 100).toFixed(2)
+                const expect = (tp_offset / (enterPoint * 0.01) * risk).toFixed(2)
+                $("input[name='leverage']").val(leverage)
+                $("input[name='expect']").val(expect)
+            })
+        })
+    </script>
+</body>
+</html>

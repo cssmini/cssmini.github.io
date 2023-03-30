@@ -123,6 +123,7 @@
     }
 	body > div.page{
 	    position: fixed;
+	    top: 30%;
 	}
 </style>
 
@@ -169,7 +170,7 @@
                 setTimeout(()=>{
 		    tempAnimated = animated + fadeOut;
                     setAnimated(tempAnimated);
-		},3000)
+		},1000)
             } else {
                 describe();
                 setFont();
@@ -177,9 +178,9 @@
 		setTimeout(()=>{
                     tempAnimated = animated + fadeInDown;
                     setAnimated(tempAnimated);
-		},3000)
+		},1000)
             }
-        }, 6000);
+        }, 3000);
 
         function setAnimated(tempAnimated) {
             document.getElementById("title").className = tempAnimated;

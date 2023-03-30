@@ -121,10 +121,14 @@
 		-ms-user-select: none;
 		user-select: none;
     }
+	body > div.page{
+	    position: fixed;
+	}
 </style>
 
 <body>
-    <article>
+    <div class="page">
+	<article>
         <div style="height: 200px;">
             <p id="title">cssmini</p>
             <p id="describe"></p>
@@ -135,8 +139,8 @@
             <a href="https://github.com/cssmini">GITHUB</a>
         </nav>
 
-    </article>
-    <footer id="footer">
+        </article>
+        <footer id="footer">
         <!--	
 			<p>
 				Copyright &COPY; 2019 乘风hexiii
@@ -145,7 +149,8 @@
 				
 			</p>
 	-->
-    </footer>
+        </footer>
+    </div>
     <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="js/ribbon.js"></script>
     <script type="text/javascript">
         let animated = "animated slower"
@@ -161,15 +166,20 @@
             let classStr = document.getElementById("describe").className;
             let tempAnimated = '';
             if (classStr == animated + fadeInDown) {
-                tempAnimated = animated + fadeOut;
-                setAnimated(tempAnimated);
+                setTimeout(()=>{
+		    tempAnimated = animated + fadeOut;
+                    setAnimated(tempAnimated);
+		},3000)
             } else {
-                tempAnimated = animated + fadeInDown;
-                setAnimated(tempAnimated);
                 describe();
                 setFont();
+		// preload font files,then showing
+		setTimeout(()=>{
+                    tempAnimated = animated + fadeInDown;
+                    setAnimated(tempAnimated);
+		},3000)
             }
-        }, 3000);
+        }, 6000);
 
         function setAnimated(tempAnimated) {
             document.getElementById("title").className = tempAnimated;

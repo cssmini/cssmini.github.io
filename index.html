@@ -71,12 +71,7 @@
         font-family: 'Video Terminal Screen';
         src: url('font/Video Terminal Screen.TTF');
     }
-    
-    body {
-        width: 375px;
-        margin: 0 auto;
-    }
-    
+   
     body{
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -85,15 +80,24 @@
 	-ms-user-select: none;
 	user-select: none;
     }
-    body > div.page{
-        position: fixed;
-        top: 30%;
-        width: 350px;
+    body{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .page{
+        width: 370px;
     }
     article {
         text-align: center;
     }
-    
+    .title-box{
+        height: 200px;
+    }
     #title {
         font-size: 84px;
         text-align: center;
@@ -127,27 +131,25 @@
 
 <body>
     <div class="page">
-	<article>
-        <div style="height: 200px;">
-            <p id="title">cssmini</p>
-            <p id="describe"></p>
-        </div>
-        <nav id="nav">
-            <a href="https://blog.cssmini.com">BLOG</a>
-            <a href="mailto:cssmini@foxmail.com">CONTACT ME</a>
-            <a href="https://github.com/cssmini">GITHUB</a>
-        </nav>
-
+	    <article>
+            <div class="title-box">
+                <p id="title">cssmini</p>
+                <p id="describe"></p>
+            </div>
+            <nav id="nav">
+                <a href="https://blog.cssmini.com">BLOG</a>
+                <a href="mailto:cssmini@foxmail.com">CONTACT ME</a>
+                <a href="https://github.com/cssmini">GITHUB</a>
+            </nav>
         </article>
         <footer id="footer">
-        <!--	
-			<p>
-				Copyright &COPY; 2019 乘风hexiii
-			</p>
-			<p>
-				
-			</p>
-	-->
+        <!--	-->
+		<p>
+			Copyright &COPY; 2019 乘风
+		</p>
+		<p>
+
+		</p>
         </footer>
     </div>
     <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="js/ribbon.js"></script>

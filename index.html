@@ -77,8 +77,20 @@
         margin: 0 auto;
     }
     
+    body{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    }
+    body > div.page{
+        position: fixed;
+        top: 30%;
+        width: 350px;
+    }
     article {
-        margin: 200px auto 0 auto;
         text-align: center;
     }
     
@@ -89,7 +101,6 @@
     }
     
     nav {
-        margin: 0 auto;
         text-align: center;
     }
     
@@ -110,21 +121,8 @@
     
     footer {
         font-size: 12px;
-        margin: 200px auto 0 auto;
         text-align: center;
     }
-	body{
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-khtml-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-    }
-	body > div.page{
-	    position: fixed;
-	    top: 30%;
-	}
 </style>
 
 <body>
